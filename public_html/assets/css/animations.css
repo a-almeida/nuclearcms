@@ -1,0 +1,24 @@
+/*
+.view-container {
+  position:relative;
+}
+.view-container > .view.ng-animate {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  min-height:500px;
+}
+.view.ng-enter, .view.ng-leave,
+.record.ng-anchor {
+  transition:0.2s linear all;
+}
+.view.ng-enter {
+  transform:translateY(100%);
+}
+.view.ng-enter.ng-enter-active, .view.ng-leave {
+  transform:translateY(0%);
+}
+.view.ng-leave.ng-leave-active {
+  transform:translateY(-100%);
+}*/

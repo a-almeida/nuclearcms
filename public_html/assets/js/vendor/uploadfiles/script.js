@@ -1,0 +1,139 @@
+$(function(){
+
+    var ul = $('#upload ul');
+   var dropzonex= '#drop';
+  
+    $('#drop a').click(function(dropzonex){
+    	 
+        // Simulate a click on the file input button
+        // to show the file browser dialog
+        $(this).parent().find('input').click();
+        $('#drop').on('dragover', function (e) {
+            e.preventDefault();
+            alert('atenção: conflitos com o DRAG&DROP\n\n\ POR FAVOR, aguarde os uploads e depois feche a janela\n\n\clicando em "cancel"');
+            window.close();
+        });
+       
+        
+    });
+
+    // Initialize the jQuery File Upload plugin
+    $('#upload').fileupload({
+
+        // This element will accept file drag/drop uploading
+        dropZone: $(dropzonex),
+
+        // This function is called when a file is added to the queue;
+        // either via the browse button, or via drag/drop:
+        add: function (e, data) {
+
+            var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
+                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+            // Append the file name and file size
+            tpl.find('p').text(data.files[0].name)
+                         .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+            // Add the HTML to the UL element
+            data.context = tpl.appendTo(ul);
+
+            // Initialize the knob plugin
+            tpl.find('input').knob();
+
+            // Listen for clicks on the cancel icon
+            tpl.find('span').click(function(){
+
+                if(tpl.hasClass('working')){
+                    jqXHR.abort();
+                }
+
+                tpl.fadeOut(function(){
+                    tpl.remove();
+                });
+
+            });
+
+            // Automatically upload the file once it is added to the queue
+            var jqXHR = data.submit();
+        },
+
+        progress: function(e, data){
+
+            // Calculate the completion percentage of the upload
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+
+            // Update the hidden input field and trigger a change
+            // so that the jQuery knob plugin knows to update the dial
+            data.context.find('input').val(progress).change();
+
+            if(progress == 100){
+                data.context.removeClass('working');
+                /**NuclearCMS
+                 * by joelferreira.eu
+                 */
+                setTimeout(function() 
+                {
+                	
+                	
+                	var images33 = $('#images');
+                	var dir    = $('#upload_dir').val();
+                	var public_dir    = $('#public_dir').val(); 
+                	var src = public_dir+'uploads/sm/'+dir+data.files[0].name;
+                	
+                	images33.append('<div class="col-sm-3 col-sx-6"><div style="padding:10px;margin-bottom:20px; border:1px solid #ccc"><img src="'+src+'" width="100%" onclick="selecionaimage(this)"><a href="#apagaresta" class="btn btn-xs btn-danger" onclick="removeimage('+dir+data.files[0].name+',this)"><i class="fa fa-remove"></i> Apagar</a></div></div>');
+                	$('#upload ul> li').remove();
+                	 $('#drop').removeClass('hoverfile');
+                	var lis = $('#upload ul li');                	
+                	$.post(public_dir+'p/files/images'+dir, { images: dir }, function(data) {
+						$('#images').empty();
+						$('#images').html(data);
+					});
+                }, 3000);
+                /*****************************************************/
+                
+            }
+        },
+        
+
+        fail:function(e, data){
+            // Something has gone wrong!
+            data.context.addClass('error');
+        }
+
+    });
+
+
+    // Prevent the default action when a file is dropped on the window
+    $(document).on('drop dragover', function (e) {
+        e.preventDefault();
+      
+    });
+    // Prevent the default action when a file is dropped on the window
+    $('#drop').on('dragleave', function (e) {
+        e.preventDefault();
+        $('#drop').removeClass('hoverfile');
+    });
+    
+    // Prevent the default action when a file is dropped on the window
+    $('#drop').on('drop dragover', function (e) {
+        e.preventDefault();
+        $('#drop').addClass('hoverfile');
+    });
+    // Helper function that formats the file sizes
+    function formatFileSize(bytes) {
+        if (typeof bytes !== 'number') {
+            return '';
+        }
+
+        if (bytes >= 1000000000) {
+            return (bytes / 1000000000).toFixed(2) + ' GB';
+        }
+
+        if (bytes >= 1000000) {
+            return (bytes / 1000000).toFixed(2) + ' MB';
+        }
+
+        return (bytes / 1000).toFixed(2) + ' KB';
+    }
+
+});

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<sidebar>
+		<item>
+			<label>
+				<pt>Dashboard</pt>
+				<en>Dashboard</en>
+				<fr>Dashboard</fr>
+				<es>Dashboard</es>
+			</label>
+			<url>cms/dashboard</url>
+			<icon>fa fa-home</icon>
+			<permission>0</permission>
+		</item>		
+		<item>
+			<label>
+				<pt>HomePage</pt>
+				<en>HomePage</en>
+				<fr>HomePage</fr>
+				<es>HomePage</es>
+			</label>
+			<url>cms/pages</url>
+			<icon>fa fa-file</icon>
+			<permission>0</permission>
+		</item>
+		<item>
+			<label>
+				<pt>Ficheiros</pt>
+				<en>Files</en>
+				<fr>Files</fr>
+				<es>Files</es>
+			</label>
+			<url>files/images</url>
+			<icon>fa fa-folder</icon>
+			<permission>0</permission>
+		</item>		
+		<item>
+			<label>
+				<pt>Menus</pt>
+				<en>Menus</en>
+				<fr>Menus</fr>
+				<es>Menus</es>
+			</label>
+			<url>cms/menus</url>
+			<icon>fa fa-bars</icon>
+			<permission>0</permission>
+		</item>
+		
+		<item>
+			<label>
+				<pt>Configurações</pt>
+				<pt>Configs</pt>
+				<pt>Configs</pt>
+				<es>Configs</es>
+			</label>
+			<url>project/config</url>
+			<icon>fa fa-gear</icon>
+			<permission>1</permission>
+		</item>
+		<item>
+			<label>
+				<pt>Utilizadores</pt>
+				<pt>Users</pt>
+				<pt>Users</pt>
+				<es>Users</es>
+			</label>
+			<url>users/profiles</url>
+			<icon>fa fa-user</icon>
+			<permission>1</permission>
+		</item>
+	</sidebar>	
+	<restrict>
+	</restrict>
+	<plugins>
+	</plugins>
+</xml>
