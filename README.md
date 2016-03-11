@@ -1,24 +1,34 @@
-# CLEANigniter
-CLEANigniter is a basic codeigniter project with HMVC extension Third-party and a rearrange of directory struture
+# NUCLEARcms
+NUCLEARcms is a fullstack energie resources to developers && designers
 
 ## What are inside?
-- [Codeigniter 3](https://github.com/bcit-ci/CodeIgniter).
-- HMVC third-party (modular applications)
-- Clean directory structure 
-- basic config (database, route, language)
+- DUAL-CORE application (admin/client)
+- PAGEcontents
+- MENUeditor
+- CONFIGproject
+- FILEmanager
+- USERprofiles
 
 # Get Start
 - Fork Project
 - extract files inside
-- edit file 'public/index.php'; **if necessary for your future applications
-- create _your_vhost (point to _your_url/public/) or goto localhost/your_url/public/
+- create database and import '/database/nuclear_github.sql'
+- edit file 'public_html/index.php'; **if necessary for your future applications ex: change admin-nuclear-folder
+- create _your_vhost (point to _your_url/public_html/) or goto localhost/your_url/public_html/
 done!
 
 # Configurations
-- "private/_core/config/routes.php" (define default module)
-- "private/_core/config/datatabase.php" (define database if necessary)
+- "private/_core/config/datatabase.php" (define database if necessary default: user: 'root' password:'')
 - "private/_core/config/project.php"(configuration file extend of config.php (default CI3)
+
+# Configurations
+- login WEBMASTER:
+user: webmaster@nuclearcms.com
+password: demoadmin
+- login MEMBER:
+- user: demo@nuclearcms.com
+password: demo123
 
 Thanks for contribuition
 
-Power by Uxcriativo
+Power by Joel Ferreira https://github.com/joelviseu
